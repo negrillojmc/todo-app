@@ -17,12 +17,19 @@ const TodoWrapper = () => {
       isEditing: false}])
       console.log(todos)
   }
+
+  const toggleComplete = id => {
+    setTodos(todos.map(todo => todo.id === id ? {
+      ...todo, completed: !todo.completed} : todo))
+  }
+
   return (
     <div className='TodoWrapper'>
       <h1>The Avatar's Todo List</h1>
       <TodoForm addTodo={addTodo} />
       {todos.map((todo, index) => (
-        <Todo task={todo} key={index} />
+        <Todo task={todo} key={index} 
+        toggleComplete={toggleComplete} />
       ))}
     </div>
   )
